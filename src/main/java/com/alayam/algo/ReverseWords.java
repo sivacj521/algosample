@@ -1,6 +1,6 @@
 package com.alayam.algo;
 
-public class    ReverseWords {
+public class ReverseWords {
 
     public static String reverseWords(String sentence) {
         String[] parts = sentence.split(" ");

@@ -1,6 +1,6 @@
 package com.alayam.algo;
 
-public class MaxProfilt {
+public class MaxProfit {
     public static int maxProfit(int[] prices) {
 
         int maxCur = 0, maxSoFar = 0;
@@ -11,7 +11,7 @@ public class MaxProfilt {
         return maxSoFar;
 
     }
-
+    //Testing maxDiff
     public static int maxDiff(int arr[])
     {
         int max_diff = arr[1] - arr[0];
@@ -29,7 +29,7 @@ public class MaxProfilt {
     public static void main(String[] args) {
 //        int arr[] = {1, 2, 90, 10, 110};
         int arr[] = {10, 9, 6, 4, 2};
-        System.out.println(MaxProfilt.maxProfit(arr));
-        System.out.println(MaxProfilt.maxDiff(arr));
+        System.out.println(MaxProfit.maxProfit(arr));
+        System.out.println(MaxProfit.maxDiff(arr));
     }
 }
