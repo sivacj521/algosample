@@ -61,10 +61,10 @@ public class ReadWriteLockSiva {
     }
 
     private boolean canGrantWriteAccess(Thread callingThread){
-        if(isOnlyReader(callingThread))    return true;
-        if(hasReaders())                   return false;
-        if(writingThread == null)          return true;
-        if(!isWriter(callingThread))       return false;
+        if(isOnlyReader(callingThread)) return true;
+        if(hasReaders())                return false;
+        if(!hasWriter())                return true;
+        if(!isWriter(callingThread))    return false;
         return true;
     }
 
@@ -78,7 +78,7 @@ public class ReadWriteLockSiva {
     }
 
     private boolean isOnlyReader(Thread callingThread){
-        return readingThreads.count(callingThread)== 1 ;
+        return readingThreads.size() == 1 && readingThreads.count(callingThread) == 1 ;
     }
 
     private boolean hasWriter(){
