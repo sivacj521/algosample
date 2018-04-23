@@ -1,19 +1,26 @@
 package com.alayam.algo;
 
 public class MaxProfit {
-    public static int maxProfit(int[] prices) {
+
+    /*
+    ** Maximum profit you can make on a stock market
+     */
+    public int maxProfit(int[] prices) {
 
         int maxCur = 0, maxSoFar = 0;
         for(int i = 1; i < prices.length; i++) {
-            maxCur = Math.max(0, maxCur += prices[i] - prices[i-1]);
+            maxCur += prices[i] - prices[i - 1];
+            maxCur = Math.max(0, maxCur);
             maxSoFar = Math.max(maxCur, maxSoFar);
         }
         return maxSoFar;
 
     }
     //Testing maxDiff
-    public static int maxDiff(int arr[])
+    public int maxDiff(int arr[])
     {
+        if(arr.length <=1) return 0;
+
         int max_diff = arr[1] - arr[0];
         int min_element = arr[0];
 
@@ -27,9 +34,10 @@ public class MaxProfit {
     }
 
     public static void main(String[] args) {
-//        int arr[] = {1, 2, 90, 10, 110};
-        int arr[] = {10, 9, 6, 4, 2};
-        System.out.println(MaxProfit.maxProfit(arr));
-        System.out.println(MaxProfit.maxDiff(arr));
+        int arr[] = {1, 2, 90, 10, 32};
+//        int arr[] = {10, 9, 6, 4, 2};
+        MaxProfit maxProfit = new MaxProfit();
+        System.out.println(maxProfit.maxProfit(arr));
+        System.out.println(maxProfit.maxDiff(arr));
     }
 }
