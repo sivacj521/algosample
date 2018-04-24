@@ -36,8 +36,7 @@ public class ReadWriteLock{
         if( isWriter(callingThread) ) return true;
         if( hasWriter()             ) return false;
         if( isReader(callingThread) ) return true;
-        if( hasWriteRequests()      ) return false;
-        return true;
+        return !hasWriteRequests();
     }
 
 
@@ -80,8 +79,7 @@ public class ReadWriteLock{
         if(isOnlyReader(callingThread))    return true;
         if(hasReaders())                   return false;
         if(writingThread == null)          return true;
-        if(!isWriter(callingThread))       return false;
-        return true;
+        return isWriter(callingThread);
     }
 
 

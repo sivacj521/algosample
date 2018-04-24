@@ -15,10 +15,10 @@ public class BlockingQueue {
 
     public synchronized void enqueue(Object item)
             throws InterruptedException  {
-        while(this.queue.size() == this.limit) {
+        while(queue.size() == limit) {
             wait();
         }
-        if(this.queue.size() == 0) {
+        if(queue.size() == 0) {
             notifyAll();
         }
         System.out.println("add:"+item);
@@ -28,14 +28,14 @@ public class BlockingQueue {
 
     public synchronized Object dequeue()
             throws InterruptedException{
-        while(this.queue.size() == 0){
+        while(queue.size() == 0){
             wait();
         }
-        if(this.queue.size() == this.limit){
+        if(queue.size() == limit){
             notifyAll();
         }
         System.out.println("remove:"+queue.get(0));
-        return this.queue.remove(0);
+        return queue.remove(0);
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -43,16 +43,16 @@ public class BlockingQueue {
         BlockingQueue blockingQueue = new BlockingQueue(5);
 
         Runnable producer = () ->{
-           System.out.println(Thread.currentThread().getName());
-           for(int i= 0; i<100; i++) {
-               try {
-                   blockingQueue.enqueue("Item " + i);
+            System.out.println(Thread.currentThread().getName());
+            for(int i= 0; i<100; i++) {
+                try {
+                    blockingQueue.enqueue("Item " + i);
 //                   Thread.sleep(100);
-               } catch (InterruptedException e) {
-                   e.printStackTrace();
-               }
-           }
-       };
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
 
         Runnable cosumer = () ->{
             System.out.println(Thread.currentThread().getName());
