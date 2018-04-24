@@ -1,49 +1,92 @@
 package com.alayam.core;
-
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+enum Suits {
+	SPADES,
+	HEARTS,
+	DIAMONDS,
+	CLUBS
+}
+
+enum Ranks {
+	ACE,
+	TWO,
+	THREE,
+	FOUR,
+	FIVE,
+	SIX,
+	SEVEN,
+	EIGHT,
+	NINE,
+	TEN,
+	JACK,
+	QUEEN,
+	KING
+}
+
+class Card {
+
+}
+
+class RegularCard extends Card{
+	private Suits suit;
+	private Ranks rank;
+
+	public RegularCard(Suits suit, Ranks rank) {
+		this.suit = suit;
+		this.rank = rank;
+	}
+
+	@Override
+	public String toString() {
+		return "RegularCard{" +
+				"suit=" + suit +
+				", rank=" + rank +
+				'}';
+	}
+}
+
+class Joker extends Card {
+	@Override
+	public String toString() {
+		return "Joker{" +
+				"name='" + name + '\'' +
+				'}';
+	}
+
+	private String name = "JOKER";
+}
 
 public class Deck {
 
-	List<Card> _cardsList = new ArrayList<Card>();
-	
-	Deck(){		
+	private List <Card> cards = new ArrayList<>();
+
+	void initDeck() {
+		for(Suits s : Suits.values()) {
+			for(Ranks r: Ranks.values()) {
+				cards.add(new RegularCard(s,r));
+			}
+		}
+		cards.add(new Joker());
+		cards.add(new Joker());
 	}
 
-	public void create()
-	{
-		//create full suit 
-		// Repeat step1. 4 times.
-		//1. creating 13cards
-		
-		//At the end create step 2
-		//2. creating 2 joker
-		System.out.println("Creating a DECK");
-		for(int i =1; i<=13; i++)
-		{			
-			_cardsList.add(new Card(i,"SPADE"));
-			//System.out.print(i);
-			_cardsList.add(new Card(i,"CLOVER"));
-			//System.out.print(i);
-			_cardsList.add(new Card(i,"DIAMOND"));
-			//System.out.print(i);
-			_cardsList.add(new Card(i,"HEARTS"));
-			//System.out.print(i+"");
-		}
-		
-		for(int i =1; i<=2; i++)
-		{
-			_cardsList.add(new Card(0,"JOKER"));
-		}
-		
+	void display() {
+		cards.stream().forEach(System.out::println);
 	}
-	
-	public void display()
-	{
-		for(int i =0; i<=_cardsList.size(); i++){
-			Card c = (Card)_cardsList.get(i);
-			c.display() ;			
-		}
+
+	private void shuffle() {
+		Collections.shuffle(cards);
 	}
+
+	public static void main(String[] args) {
+		Deck deck = new Deck();
+		deck.initDeck();
+		deck.shuffle();
+		deck.display();
+	}
+
+
 }
