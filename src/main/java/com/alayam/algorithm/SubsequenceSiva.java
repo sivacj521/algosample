@@ -12,8 +12,9 @@ public class SubsequenceSiva {
     public static boolean isPalindrome(String s){
         if(s==null||s.length()==0) return false;
 
-        for(int i = 0; i < s.length() ; i++){
-            if(s.charAt(i) != s.charAt(s.length() - 1 - i)){
+        int end = s.length() - 1;
+        for(int i = 0; i < end/2 ; i++){
+            if(s.charAt(i) != s.charAt(end - i)){
                 return false;
             }
         }
@@ -47,9 +48,10 @@ public class SubsequenceSiva {
 
 
     public static void main(String[] args) {
-//        String s = "bandana";
-        String s ="aaa";
+        String s = "madam1";
+//        String s ="aaa";
 //        int k = Integer.parseInt(args[1]);
-        System.out.println(longestPalindrome(s.length(), s));
+//        System.out.println(longestPalindrome(s.length(), s));
+        System.out.println(isPalindrome(s));
     }
 }

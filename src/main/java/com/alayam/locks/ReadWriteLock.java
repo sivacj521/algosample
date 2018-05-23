@@ -6,14 +6,13 @@ import com.google.common.collect.Multiset;
 public class ReadWriteLock {
 
     private Multiset<Thread> readingThreads = HashMultiset.create();
-
     private int writeAccesses    = 0;
     private int writeRequests    = 0;
     private Thread writingThread = null;
 
     public synchronized void lockRead() throws InterruptedException{
         Thread callingThread = Thread.currentThread();
-        while(! canGrantReadAccess(callingThread)){
+        while(!canGrantReadAccess(callingThread)){
             wait();
         }
         readingThreads.add(callingThread);
@@ -32,7 +31,7 @@ public class ReadWriteLock {
     public synchronized void lockWrite() throws InterruptedException{
         writeRequests++;
         Thread callingThread = Thread.currentThread();
-        while(! canGrantWriteAccess(callingThread)){
+        while(!canGrantWriteAccess(callingThread)){
             wait();
         }
         writeRequests--;

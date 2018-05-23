@@ -62,7 +62,7 @@ public class HeapSortSiva
     // Driver program
     public static void main(String args[])
     {
-        int arr[] = {12, 11, 13, 5, 6, 7};
+        int arr[] = {12, 11, 13, 5, 16, 7};
         HeapSortSiva ob = new HeapSortSiva();
         ob.heapSort(arr);
         System.out.println("Sorted array is "+ Arrays.toString(arr));

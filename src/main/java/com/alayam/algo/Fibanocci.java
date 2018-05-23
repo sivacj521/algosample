@@ -6,7 +6,7 @@ public class Fibanocci {
 
 
     long fib(int n) {
-        long a=0,b=1,c =0;
+        long a=0,b=1,c = 0;
         if(n == 0 ) return 0;
         if (n == 1 ) return 1;
         for(int i = 2; i<=n; i++){
@@ -19,7 +19,7 @@ public class Fibanocci {
 
     long fibRecursive(int n) {
         if(n<=0){
-            return 0;
+            throw new IllegalArgumentException("test");
         }else if( n == 1){
             return 1;
         }else {
@@ -41,7 +41,8 @@ public class Fibanocci {
 
     public static void main(String[] args) {
         Fibanocci fibanocci = new Fibanocci();
-        int n = 100;
+        //0,1,1,2,3,5,8,13
+        int n = -1;
         long start = System.currentTimeMillis();
         System.out.println(fibanocci.fib(n));
         System.out.println(fibanocci.fibMemoization(n));
